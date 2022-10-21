@@ -63,8 +63,8 @@ class PromotionController extends Controller
      */
     public function edit($id)
     {
-        $promotion=Promotion::findOrFail($id);
-        return view('edit',['promo'=>$promotion]);
+        $promotions = Promotion::where('id',$id)->get();
+    return view('edit',compact('promotions'));
     }
 
     /**
@@ -76,7 +76,10 @@ class PromotionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $promotions=Promotion::where('id',$id)->update([
+            "name"=>$request->name
+        ]);
+        return redirect('/')->with("status","bien");
     }
 
     /**
@@ -87,6 +90,7 @@ class PromotionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Promotion::where('id',$id)->Delete();
+        return redirect('/')->with('status',"Delete Successfully");
     }
 }
