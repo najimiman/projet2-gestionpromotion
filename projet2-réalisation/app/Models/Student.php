@@ -9,6 +9,7 @@ use App\Models\Promotion;
 class Student extends Model
 {
     use HasFactory;
+    protected $table = "students";
     protected $fillable=[
         'id',
         'First_name',
