@@ -5,33 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{url('css/edit.css')}}" />
     <title>Document</title>
 </head>
 <body>
     <form action="{{route('gestion.update',[$promotion->id])}}" method="post">
         @csrf
         @method('PUT')
-     nom:<input name="name" value="{{$promotion->name}}" type="text"  >
+        <span>Name:</span><input name="name" value="{{$promotion->name}}" type="text" id="nameinput">
      @error('name')
          {{$message}}
      @enderror
-        <button type="submit">modifier</button>
+        <button type="submit">Update</button>
     </form>
         <!-- for liste de students -->
-    <table>
+    <table class="customers">
         <input type="search" id="searchstudent" name="searchstudent" placeholder="search student">
+        <a href="{{route('gestion.insert', $promotion->id)}}" id="add">Add student</a>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th></th>
+        <th></th>
             <tbody class="table1">
             @foreach($studentPromo as $values)
                 <tr> 
             <td>{{ $values['First_name'] }}</td>
             <td>{{ $values['Last_name'] }}</td>
             <td>{{ $values['Email'] }}</td> 
-            <td> <input id="pp" type="hidden" value="{{$values['PromotionID']}}"></td> 
-            <td><a href="{{ route('gestion.editstudent',[$values['id']]) }}"><button>update</button></a></td>
+           <input id="pp" type="hidden" value="{{$values['PromotionID']}}">
+            <td><a href="{{ route('gestion.editstudent',[$values['id']]) }}"><button>Update</button></a></td>
             <form action="{{ route('gestionstud.destroy',[$values['id']]) }}" method="POST">
                 @csrf
                 @method('delete')
-                <td><input type="submit" value="delete"></td>
+                <td>
+            <button type="submit" >Delete</button></td>
         </form>
         </tr>
         @endforeach
@@ -40,7 +48,7 @@
         <tbody id="Content" class="table2">
         </tbody>
     </table>
-    <a href="{{route('gestion.insert', $promotion->id)}}">ajouter student</a>
+   
     
     {{-- for search student --}}
     

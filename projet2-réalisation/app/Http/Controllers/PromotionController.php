@@ -117,8 +117,8 @@ class PromotionController extends Controller
             '<tr>
             <td> '.$promo->name.' </td>
            
-            <td>'.'<a href="/gestion/'.$promo['id'].'/edit">'.'<button>update</button></a>'.'</td>
-            <td>'.'<form method="post" action="'.route('gestion.destroy',$promo->id ).'">
+            <td class="td1">'.'<a href="/gestion/'.$promo['id'].'/edit">'.'<button>update</button></a>'.'</td>
+            <td class="td1">'.'<form method="post" action="'.route('gestion.destroy',$promo->id ).'">
             <input type="hidden" name="_method" value="Delete">
             <input type="hidden" name="_token" value="'. csrf_token() .'">
                 <button type="submit" >Delete</button>

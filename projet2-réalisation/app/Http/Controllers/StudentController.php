@@ -37,6 +37,10 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(['First_name'=>'Required'
+        ]);
+        $request->validate(['Last_name'=>'Required'
+        ]);
         $student=new Student();
         $student->first_name=$request->input('First_name');
         $student->Last_name=$request->input('Last_name');
